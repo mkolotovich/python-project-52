@@ -1,0 +1,16 @@
+{% extends "application.html" %}
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% load i18n %}
+{% block header %}
+    <h1>{% translate 'sign_up' %}</h1>
+{% endblock %}
+
+{% block content %}
+    <form action="{% url 'new_user' %}" method="post" class="m-0">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <input class='btn btn-primary' type="submit" value="{% translate 'sign_up_btn' %}">
+    </form>
+{% endblock %}

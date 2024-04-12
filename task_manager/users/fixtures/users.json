@@ -1,0 +1,20 @@
+[
+    {
+        "model": "users.user",
+        "pk": 4,
+        "fields": {
+            "password": "smith",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "john",
+            "first_name": "",
+            "last_name": "",
+            "email": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2024-04-10T11:32:24.939Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    }
+]
