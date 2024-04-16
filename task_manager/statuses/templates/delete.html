@@ -1,0 +1,13 @@
+{% extends "application.html" %}
+{% load i18n %}
+{% block header %}
+    <h1>{% translate 'remove_status' %}</h1>
+{% endblock %}
+
+{% block content %}
+    <p>{% translate 'remove_user_confirm' %} {{ status.name}}?</p>
+    <form action="{% url 'drop_status' pk=status_id %}" method="post" class="m-0">
+        {% csrf_token %}
+        <input class='btn btn-danger' type="submit" value="{% translate 'remove_user_btn' %}">
+    </form>
+{% endblock %}

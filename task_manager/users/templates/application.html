@@ -25,6 +25,9 @@
                     <ul class="navbar-nav">
                         {% if user.is_authenticated %}
                             <li class="nav-item">
+                                <a class="nav-link" href="{% url 'statuses' %}">{% translate 'statuses' %}</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="{% url 'logout' %}">{% translate 'sign_out' %}</a>
                             </li>
                         {% else %}

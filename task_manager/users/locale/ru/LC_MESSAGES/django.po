@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-12 09:29+0000\n"
+"POT-Creation-Date: 2024-04-12 11:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,18 +33,22 @@ msgid "app_users"
 msgstr "Пользователи"
 
 #: templates/application.html:28
+msgid "statuses"
+msgstr "Статусы"
+
+#: templates/application.html:31
 msgid "sign_out"
 msgstr "Выход"
 
-#: templates/application.html:32 templates/registration/login.html:7
+#: templates/application.html:35 templates/registration/login.html:7
 msgid "sign_in"
 msgstr "Вход"
 
-#: templates/application.html:35 templates/registration/register.html:6
+#: templates/application.html:38 templates/registration/register.html:7
 msgid "sign_up"
 msgstr "Регистрация"
 
-#: templates/application.html:49
+#: templates/application.html:52
 msgid "footer"
 msgstr "Hexlet"
 
@@ -52,7 +56,7 @@ msgstr "Hexlet"
 msgid "sign_in_btn"
 msgstr "Войти"
 
-#: templates/registration/register.html:13
+#: templates/registration/register.html:14
 msgid "sign_up_btn"
 msgstr "Зарегистрировать"
 
