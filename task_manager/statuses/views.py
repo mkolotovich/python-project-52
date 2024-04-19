@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 from .forms import StatusCreationForm
 from task_manager.statuses.models import Status
+from task_manager.tasks.models import Task
 from django.contrib import messages
 from django.utils.translation import gettext
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -64,8 +65,13 @@ class StatusFormDeleteView(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         status_id = kwargs.get('pk')
         status = Status.objects.get(id=status_id)
+        task = Task.objects.filter(status_id=status_id)
+        if task:
+            messages.add_message(request, messages.ERROR,
+                                 gettext("status_error"))
+            return redirect('statuses')
         if status:
             status.delete()
             status_remove = gettext("status_remove")
             messages.add_message(request, messages.SUCCESS, status_remove)
-        return redirect('statuses')
+            return redirect('statuses')

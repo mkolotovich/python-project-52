@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-16 11:12+0000\n"
+"POT-Creation-Date: 2024-04-19 13:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -74,14 +74,18 @@ msgstr ""
 msgid "create_status_btn"
 msgstr "Создать"
 
-#: views.py:27
+#: views.py:28
 msgid "status_created"
 msgstr "Статус успешно создан"
 
-#: views.py:50
+#: views.py:51
 msgid "status_edit"
 msgstr "Статус успешно изменен"
 
-#: views.py:69
+#: views.py:71
+msgid "status_error"
+msgstr "Невозможно удалить статус, потому что он используется"
+
+#: views.py:75
 msgid "status_remove"
 msgstr "Статус успешно удален"
