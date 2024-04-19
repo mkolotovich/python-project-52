@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from .forms import UserCreationForm
+from .forms import (
+    UserCreationForm, CustomUserChangeForm, CustomSetPasswordForm)
 from task_manager.users.models import User
+from task_manager.tasks.models import Task
 from django.contrib import messages
 from django.utils.translation import gettext
 
@@ -47,19 +49,24 @@ class UsersFormEditView(View):
             return redirect('users')
         user_id = kwargs.get('pk')
         user = User.objects.get(id=user_id)
-        form = UserCreationForm(instance=user)
+        user_form = CustomUserChangeForm(instance=user)
+        pass_form = CustomSetPasswordForm(user)
         return render(request, 'users/edit.html',
-                      {'form': form, 'user_id': user_id})
+                      {'form': user_form, 'password_form': pass_form,
+                       'user_id': user_id})
 
     def post(self, request, *args, **kwargs):
         user_id = kwargs.get('pk')
         user = User.objects.get(id=user_id)
-        form = UserCreationForm(request.POST, instance=user)
-        if form.is_valid():
-            form.save()
+        user_form = CustomUserChangeForm(request.POST, instance=user)
+        password_form = CustomSetPasswordForm(user, request.POST)
+        if user_form.is_valid() and password_form.is_valid():
+            user_form.save()
+            password_form.save()
             return redirect('users')
         return render(request, 'users/edit.html',
-                      {'form': form, 'user_id': user_id})
+                      {'form': user_form, 'password_form': password_form,
+                       'user_id': user_id})
 
 
 class UsersFormDeleteView(View):
@@ -72,6 +79,12 @@ class UsersFormDeleteView(View):
     def post(self, request, *args, **kwargs):
         user_id = kwargs.get('pk')
         user = User.objects.get(id=user_id)
+        author = Task.objects.filter(author_id=user_id)
+        executor = Task.objects.filter(executor_id=user_id)
+        if author or executor:
+            messages.add_message(request, messages.ERROR,
+                                 gettext("remove_error"))
+            return redirect('users')
         if user:
             user.delete()
-        return redirect('users')
+            return redirect('users')

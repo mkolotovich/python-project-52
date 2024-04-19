@@ -10,7 +10,12 @@
 {% block content %}
     <form action="{% url 'patch_user' pk=user_id %}" method="post" class="m-0">
         {% csrf_token %}
-        {% bootstrap_form form %}
+        {% for field in form %}
+            {% if field.name != 'password' %}
+                {% bootstrap_field field %}
+            {% endif %}
+        {% endfor %}
+        {% bootstrap_form password_form %}
         <input class='btn btn-primary' type="submit" value="{% translate 'edit_user_btn' %}">
     </form>
 {% endblock %}

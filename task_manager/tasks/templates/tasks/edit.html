@@ -1,0 +1,73 @@
+{% extends "application.html" %}
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% load i18n %}
+{% block header %}
+    <h1>{% translate 'edit_task' %}</h1>
+{% endblock %}
+
+{% block content %}
+    <form action="{% url 'edit_task' pk=task_id %}" method="post" class="m-0">
+        {% csrf_token %}
+        {% for field in form %}
+            {% if field.name == 'status' %}
+                <div class="mb-3">
+                    {{ field.label_tag }} 
+                    {% if field.errors  %}
+                        <select name="{{ field.name }}" class="form-select is-invalid" id="id_{{field.name }}">
+                            {% if field.field.queryset.exists %}
+                                <option value="">---------</option>
+                                {% for status in field.field.queryset %}
+                                    <option value="{{ status.pk }}">{{ status.name }}</option>
+                                {% endfor %}
+                            {% else %}
+                                <option value="">---------</option>
+                            {% endif %}
+                        </select>
+                        {% for error in field.errors %}
+                            <div class="invalid-feedback">{{ error|escape }}</div>
+                        {% endfor %}
+                    {% else  %}
+                        <select name="{{ field.name }}" class="form-select" id="id_{{field.name }}">
+                            {% if field.field.queryset.exists %}
+                                <option value="">---------</option>
+                                {% for status in field.field.queryset %}
+                                    <option value="{{ status.pk }}" 
+                                        {% if status.name == task.status.name %} selected  {% endif %}
+                                    >{{ status.name }}</option>
+                                {% endfor %}
+                            {% else %}
+                                <option value="">---------</option>
+                            {% endif %}
+                        </select>
+                    {% endif %}
+                </div>
+            {% elif field.name == 'description' %}
+                <div class="mb-3">
+                    {{ field.errors }}
+                    {{ field.label_tag }} 
+                    <textarea name="{{field.name }}" class="form-control" id="id_{{field.name }}" rows="10"></textarea>
+                </div>
+            {% elif field.name == 'executor' %}
+                <div class="mb-3">
+                    {{ field.errors }}
+                    {{ field.label_tag }} 
+                    <select name="{{ field.name }}" class="form-select" id="id_{{field.name }}">
+                        {% if field.field.queryset.exists %}
+                            <option value="">---------</option>
+                            {% for user in field.field.queryset %}
+                                <option value="{{ user.pk }}">{{ user.first_name}} {{user.last_name }}</option>
+                            {% endfor %}
+                        {% else %}
+                            <option value="">---------</option>
+                        {% endif %}
+                    </select>
+                </div>
+            {% else  %}
+                {% bootstrap_field field %}
+            {% endif %}
+        {% endfor %}
+        <input class='btn btn-primary' type="submit" value="{% translate 'edit_user_btn' %}">
+    </form>
+{% endblock %}

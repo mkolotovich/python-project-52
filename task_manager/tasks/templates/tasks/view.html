@@ -1,0 +1,40 @@
+{% extends "application.html" %}
+{% load i18n %}
+{% block header %}
+    <h1>{% translate 'view_task' %}</h1>
+{% endblock %}
+
+{% block content %}
+    <div class="row shadow p-5">
+        <h2>{{task.name}}</h2>
+        <div class="col-md-8">
+            <div class="lead fw-normal">{{task.description}}</div>
+        </div>
+    <div class="col-md-4 border-start">
+        <div class="mb-2 ">
+            <span class="badge me-1 bg-danger">{{task.status.name}}</span>
+            <!-- {% for label in taskLabels %}
+                <span class="badge bg-info me-1">{{label.name}}</span>
+            {% endfor %} -->
+        </div>
+    </div>
+    <div class="d-flex mb-3">
+        <span class="text-muted me-2">{% translate 'author' %}</span>
+        <span>{{ task.author.first_name }} {{task.author.last_name }}</span>
+    </div>
+    <div class="d-flex mb-3">
+        <span class="text-muted me-2">{% translate 'executor' %}</span>
+        <span>{{task.executor}}</span>
+    </div>
+    <div class="d-flex mb-3">
+        <span class="text-muted me-2">{% translate 'created_at' %}</span>
+        <span>{{task.created_at}}</span>
+    </div>
+    <div class="d-flex">
+        <a class="btn btn-primary me-1" href="{% url 'tasks' %}{{ task.id }}/update/">{% translate 'edit_user_btn' %}</a>
+    </div>
+    <div class="d-flex">
+        <a href="{% url 'tasks' %}{{ task.id }}/delete/" class='btn btn-danger'>{% translate 'remove' %}</a>
+    </div>
+    </div>
+{% endblock %}

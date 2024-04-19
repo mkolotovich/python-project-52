@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-12 11:46+0000\n"
+"POT-Creation-Date: 2024-04-19 11:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,14 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: forms.py:22
+msgid "old_password"
+msgstr "Пароль"
+
+#: forms.py:24
+msgid "new_password"
+msgstr "Подтверждение пароля"
 
 #: templates/application.html:10
 msgid "title"
@@ -37,18 +45,22 @@ msgid "statuses"
 msgstr "Статусы"
 
 #: templates/application.html:31
+msgid "tasks"
+msgstr "Задачи"
+
+#: templates/application.html:34
 msgid "sign_out"
 msgstr "Выход"
 
-#: templates/application.html:35 templates/registration/login.html:7
+#: templates/application.html:38 templates/registration/login.html:7
 msgid "sign_in"
 msgstr "Вход"
 
-#: templates/application.html:38 templates/registration/register.html:7
+#: templates/application.html:41 templates/registration/register.html:7
 msgid "sign_up"
 msgstr "Регистрация"
 
-#: templates/application.html:52
+#: templates/application.html:55
 msgid "footer"
 msgstr "Hexlet"
 
@@ -76,7 +88,7 @@ msgstr "Да, удалить"
 msgid "edit_user"
 msgstr "Изменение пользователя"
 
-#: templates/users/edit.html:14 templates/users/index.html:26
+#: templates/users/edit.html:19 templates/users/index.html:26
 msgid "edit_user_btn"
 msgstr "Изменить"
 
@@ -116,13 +128,17 @@ msgstr "Практические курсы по программировани�
 msgid "more"
 msgstr "Узнать больше"
 
-#: views.py:41
+#: views.py:43
 msgid "auth_error"
 msgstr "Вы не авторизованы! Пожалуйста, выполните вход."
 
-#: views.py:45
+#: views.py:47
 msgid "edit_error"
 msgstr "У вас нет прав для изменения другого пользователя."
+
+#: views.py:86
+msgid "remove_error"
+msgstr "Невозможно удалить пользователя, потому что он используется"
 
 #, fuzzy
 #~| msgid "app_users"
