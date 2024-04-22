@@ -11,7 +11,9 @@
     <form action="{% url 'edit_task' pk=task_id %}" method="post" class="m-0">
         {% csrf_token %}
         {% for field in form %}
-            {% if field.name == 'status' %}
+            {% if field.name == 'name' %}
+                {% bootstrap_field field %}
+            {% elif field.name == 'status' %}
                 <div class="mb-3">
                     {{ field.label_tag }} 
                     {% if field.errors  %}
@@ -65,7 +67,21 @@
                     </select>
                 </div>
             {% else  %}
-                {% bootstrap_field field %}
+                <div class="mb-3">
+                    {{ field.errors }}
+                    {{ field.label_tag }} 
+                    <select name="{{ field.name }}" class="form-select" id="id_{{ field.name }}" multiple>
+                        {% if field.field.queryset.exists %}
+                            {% for label in field.field.queryset %}
+                                <option value="{{ label.pk }}"
+                                {% for name in labels %}
+                                    {% if label.name in name %} selected {% endif %}
+                                {% endfor %}
+                                 >{{ label.name}}</option>
+                            {% endfor %}
+                        {% endif %}
+                    </select>
+                </div>
             {% endif %}
         {% endfor %}
         <input class='btn btn-primary' type="submit" value="{% translate 'edit_user_btn' %}">

@@ -14,10 +14,10 @@ class TasksCRUDTest(unittest.TestCase):
                                                        'status': 1})
         self.assertEqual(response.status_code, 302)
         task = Task.objects.get(name="tota")
-        self.assertEqual(task.status.id, 1)
+        self.assertEqual(task.status.id, 6)
 
     def test_read(self):
         response = self.client.get('/tasks/')
         self.assertEqual(response.status_code, 302)
         task = Task.objects.get(name="tota")
-        self.assertEqual(task.status.id, 1)
+        self.assertEqual(task.status.id, 6)

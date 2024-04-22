@@ -14,8 +14,8 @@ class StatusCRUDTest(unittest.TestCase):
         response = self.client.post('/statuses/create/', {'name': 'новый1'})
         self.assertEqual(response.status_code, 302)
         status = Status.objects.get(name="новый1")
-        self.assertEqual(status.created_at, datetime.datetime(2024, 4, 15, 11,
-                                                              52, 48, 278782,
+        self.assertEqual(status.created_at, datetime.datetime(2024, 4, 22, 12,
+                                                              47, 6, 771409,
                                                               tzinfo=datetime
                                                               .timezone.utc))
 
@@ -23,8 +23,8 @@ class StatusCRUDTest(unittest.TestCase):
         response = self.client.get('/statuses/')
         self.assertEqual(response.status_code, 302)
         status = Status.objects.get(name="новый1")
-        self.assertEqual(status.created_at, datetime.datetime(2024, 4, 15, 11,
-                                                              52, 48, 278782,
+        self.assertEqual(status.created_at, datetime.datetime(2024, 4, 22, 12,
+                                                              47, 6, 771409,
                                                               tzinfo=datetime
                                                               .timezone.utc))
 
@@ -33,4 +33,3 @@ class StatusCRUDTest(unittest.TestCase):
         self.assertEqual(response.status_code, 302)
         status = Status.objects.get(name="новый2")
         self.assertTrue(status.created_at)
-

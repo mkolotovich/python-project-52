@@ -11,7 +11,9 @@
     <form action="{% url 'new_task' %}" method="post" class="m-0">
         {% csrf_token %}
         {% for field in form %}
-            {% if field.name == 'status' %}
+            {% if field.name == 'name' %}
+                {% bootstrap_field field %}
+            {% elif field.name == 'status' %}
                 <div class="mb-3">
                     {{ field.label_tag }} 
                     {% if field.errors  %}
@@ -29,16 +31,16 @@
                             <div class="invalid-feedback">{{ error|escape }}</div>
                         {% endfor %}
                     {% else  %}
-                    <select name="{{ field.name }}" class="form-select" id="id_{{field.name }}">
-                        {% if field.field.queryset.exists %}
-                            <option value="">---------</option>
-                            {% for status in field.field.queryset %}
-                                <option value="{{ status.pk }}">{{ status.name }}</option>
-                            {% endfor %}
-                        {% else %}
-                            <option value="">---------</option>
-                        {% endif %}
-                    </select>
+                        <select name="{{ field.name }}" class="form-select" id="id_{{field.name }}">
+                            {% if field.field.queryset.exists %}
+                                <option value="">---------</option>
+                                {% for status in field.field.queryset %}
+                                    <option value="{{ status.pk }}">{{ status.name }}</option>
+                                {% endfor %}
+                            {% else %}
+                                <option value="">---------</option>
+                            {% endif %}
+                        </select>
                     {% endif %}
                 </div>
             {% elif field.name == 'description' %}
@@ -51,7 +53,7 @@
                 <div class="mb-3">
                     {{ field.errors }}
                     {{ field.label_tag }} 
-                    <select name="{{ field.name }}" class="form-select" id="id_{{field.name }}">
+                    <select name="{{ field.name }}" class="form-select" id="id_{{ field.name }}">
                         {% if field.field.queryset.exists %}
                             <option value="">---------</option>
                             {% for user in field.field.queryset %}
@@ -62,8 +64,20 @@
                         {% endif %}
                     </select>
                 </div>
-            {% else  %}
+            {% elif field.name == 'author' %}
                 {% bootstrap_field field %}
+            {% else  %}
+                <div class="mb-3">
+                    {{ field.errors }}
+                    {{ field.label_tag }} 
+                    <select name="{{ field.name }}" class="form-select" id="id_{{ field.name }}" multiple>
+                        {% if field.field.queryset.exists %}
+                            {% for label in field.field.queryset %}
+                                <option value="{{ label.pk }}">{{ label.name}}</option>
+                            {% endfor %}
+                        {% endif %}
+                    </select>
+                </div>
             {% endif %}
         {% endfor %}
         <input class='btn btn-primary' type="submit" value="{% translate 'create_status_btn' %}">

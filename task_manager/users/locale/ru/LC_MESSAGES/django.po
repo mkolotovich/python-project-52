@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-19 11:43+0000\n"
+"POT-Creation-Date: 2024-04-22 07:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,22 +45,26 @@ msgid "statuses"
 msgstr "Статусы"
 
 #: templates/application.html:31
+msgid "labels"
+msgstr "Метки"
+
+#: templates/application.html:34
 msgid "tasks"
 msgstr "Задачи"
 
-#: templates/application.html:34
+#: templates/application.html:37
 msgid "sign_out"
 msgstr "Выход"
 
-#: templates/application.html:38 templates/registration/login.html:7
+#: templates/application.html:41 templates/registration/login.html:7
 msgid "sign_in"
 msgstr "Вход"
 
-#: templates/application.html:41 templates/registration/register.html:7
+#: templates/application.html:44 templates/registration/register.html:7
 msgid "sign_up"
 msgstr "Регистрация"
 
-#: templates/application.html:55
+#: templates/application.html:58
 msgid "footer"
 msgstr "Hexlet"
 

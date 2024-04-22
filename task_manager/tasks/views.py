@@ -26,6 +26,9 @@ class TaskFormCreateView(LoginRequiredMixin, View):
             task = form.save(commit=False)
             task.author = request.user
             task.save()
+            for label in form.cleaned_data['labels']:
+                task.labels.add(label)
+            task.save()
             task_created = gettext("task_created")
             messages.add_message(request, messages.SUCCESS, task_created)
             return redirect('tasks')
@@ -39,9 +42,11 @@ class TaskFormEditView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         task_id = kwargs.get('pk')
         task = Task.objects.get(id=task_id)
+        labels = task.labels.all().values_list('name')
         form = TaskCreationForm(instance=task)
         return render(request, 'tasks/edit.html',
-                      {'form': form, 'task_id': task_id, 'task': task})
+                      {'form': form, 'task_id': task_id, 'task': task,
+                       'labels': labels})
 
     def post(self, request, *args, **kwargs):
         task_id = kwargs.get('pk')
@@ -81,5 +86,6 @@ class TaskFormView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         task_id = kwargs.get('pk')
         task = Task.objects.get(id=task_id)
+        labels = task.labels.all()
         return render(request, 'tasks/view.html',
-                      {'task_id': task_id, 'task': task})
+                      {'task_id': task_id, 'task': task, 'labels': labels})
