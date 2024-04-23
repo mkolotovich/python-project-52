@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-19 12:53+0000\n"
+"POT-Creation-Date: 2024-04-23 08:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: forms.py:11 templates/tasks/index.html:13
+#: forms.py:11 templates/tasks/task_filter.html:98
 msgid "status_name"
 msgstr ""
 
@@ -28,13 +28,19 @@ msgstr ""
 msgid "task_description"
 msgstr "Описание"
 
-#: forms.py:13 templates/tasks/index.html:14
+#: forms.py:13 templates/tasks/task_filter.html:18
+#: templates/tasks/task_filter.html:99
 msgid "status"
 msgstr "Статус"
 
-#: forms.py:14 templates/tasks/index.html:16 templates/tasks/view.html:26
+#: forms.py:14 templates/tasks/task_filter.html:51
+#: templates/tasks/task_filter.html:101 templates/tasks/view.html:26
 msgid "executor"
 msgstr "Исполнитель"
+
+#: forms.py:15
+msgid "labels"
+msgstr ""
 
 #: templates/tasks/delete.html:4
 msgid "remove_task"
@@ -54,59 +60,71 @@ msgstr "Создать задачу"
 msgid "edit_task"
 msgstr "Изменение задачи"
 
-#: templates/tasks/edit.html:71 templates/tasks/index.html:33
+#: templates/tasks/edit.html:87 templates/tasks/task_filter.html:118
 #: templates/tasks/view.html:34
 msgid "edit_user_btn"
 msgstr ""
 
-#: templates/tasks/index.html:4
-msgid "tasks"
-msgstr "Задачи"
-
-#: templates/tasks/index.html:5 templates/tasks/new.html:7
+#: templates/tasks/new.html:7 templates/tasks/task_filter.html:8
 msgid "create_task"
 msgstr "Создать задачу"
 
-#: templates/tasks/index.html:12
+#: templates/tasks/new.html:83
+msgid "create_status_btn"
+msgstr "Создать задачу"
+
+#: templates/tasks/task_filter.html:7
+msgid "tasks"
+msgstr "Задачи"
+
+#: templates/tasks/task_filter.html:65
+msgid "label"
+msgstr "Метка"
+
+#: templates/tasks/task_filter.html:88
+msgid "only_my_tasks"
+msgstr "Только свои задачи"
+
+#: templates/tasks/task_filter.html:90
+msgid "show_btn"
+msgstr "Показать"
+
+#: templates/tasks/task_filter.html:97
 msgid "id"
 msgstr ""
 
-#: templates/tasks/index.html:15 templates/tasks/view.html:22
+#: templates/tasks/task_filter.html:100 templates/tasks/view.html:22
 msgid "author"
 msgstr "Автор"
 
-#: templates/tasks/index.html:17 templates/tasks/view.html:30
+#: templates/tasks/task_filter.html:102 templates/tasks/view.html:30
 msgid "created_at"
 msgstr ""
 
-#: templates/tasks/index.html:18
+#: templates/tasks/task_filter.html:103
 msgid "actions"
 msgstr ""
 
-#: templates/tasks/index.html:34 templates/tasks/view.html:37
+#: templates/tasks/task_filter.html:119 templates/tasks/view.html:37
 msgid "remove"
 msgstr ""
-
-#: templates/tasks/new.html:69
-msgid "create_status_btn"
-msgstr "Создать задачу"
 
 #: templates/tasks/view.html:4
 msgid "view_task"
 msgstr "Просмотр задачи"
 
-#: views.py:29
+#: views.py:33
 msgid "task_created"
 msgstr "Задача успешно создана"
 
-#: views.py:52
+#: views.py:58
 msgid "task_edit"
 msgstr "Задача успешно изменена"
 
-#: views.py:71
+#: views.py:77
 msgid "remove_task_error"
 msgstr "Задачу может удалить только ее автор"
 
-#: views.py:75
+#: views.py:81
 msgid "task_remove"
 msgstr "Задача успешно удалена"

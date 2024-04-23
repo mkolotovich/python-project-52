@@ -24,7 +24,7 @@
     </div>
     <div class="d-flex mb-3">
         <span class="text-muted me-2">{% translate 'executor' %}</span>
-        <span>{{task.executor}}</span>
+        <span>{{task.executor.first_name }} {{task.executor.last_name }}</span>
     </div>
     <div class="d-flex mb-3">
         <span class="text-muted me-2">{% translate 'created_at' %}</span>

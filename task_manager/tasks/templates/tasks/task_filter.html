@@ -1,0 +1,126 @@
+{% extends "application.html" %}
+{% load i18n %}
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% block header %}
+    <h1>{% translate 'tasks' %}</h1>
+    <a href="{% url 'new_task' %}" class="btn btn-primary me-1 mb-5">{% translate 'create_task' %}</a>
+{% endblock %}
+
+{% block content %}
+    <div class="card shadow-sm">
+        <div class="card-body p-4">
+            <form action="{% url 'tasks' %}" method="get">
+                {% for field in filter.form %}
+                    {% if field.name == 'status' %}
+                        <div class="mb-3">
+                            <label for="id_status">{% translate 'status' %}</label>
+                            {% if field.errors  %}
+                                <select name="{{ field.name }}" class="form-select is-invalid" id="id_{{field.name }}">
+                                    {% if field.field.queryset.exists %}
+                                        <option value="">---------</option>
+                                        {% for status in field.field.queryset %}
+                                            <option value="{{ status.pk }}">{{ status.name }}</option>
+                                        {% endfor %}
+                                    {% else %}
+                                        <option value="">---------</option>
+                                    {% endif %}
+                                </select>
+                                {% for error in field.errors %}
+                                    <div class="invalid-feedback">{{ error|escape }}</div>
+                                {% endfor %}
+                            {% else  %}
+                                <select name="{{ field.name }}" class="form-select" id="id_{{field.name }}">
+                                    {% if field.field.queryset.exists %}
+                                        <option value="">---------</option>
+                                        {% for status in field.field.queryset %}
+                                            <option value="{{ status.pk }}" 
+                                                {% if status.name == task.status.name %} selected  {% endif %}
+                                            >{{ status.name }}</option>
+                                        {% endfor %}
+                                    {% else %}
+                                        <option value="">---------</option>
+                                    {% endif %}
+                                </select>
+                            {% endif %}
+                        </div>
+                    {% elif field.name == 'executor' %}
+                        <div class="mb-3">
+                            {{ field.errors }}
+                            <label for="id_executor">{% translate 'executor' %}</label>
+                            <select name="{{ field.name }}" class="form-select" id="id_{{field.name }}">
+                                {% if field.field.queryset.exists %}
+                                    <option value="">---------</option>
+                                    {% for user in field.field.queryset %}
+                                        <option value="{{ user.pk }}">{{ user.first_name}} {{user.last_name }}</option>
+                                    {% endfor %}
+                                {% else %}
+                                    <option value="">---------</option>
+                                {% endif %}
+                            </select>
+                        </div>
+                    {% elif field.name == 'labels' %}
+                        <div class="mb-3">
+                            <label for="id_labels">{% translate 'label' %}</label>
+                            <select name="{{ field.name }}" class="form-select" id="id_{{ field.name }}">
+                                {% if field.field.queryset.exists %}
+                                    <option value="">---------</option>
+                                    {% for label in field.field.queryset %}
+                                        <option value="{{ label.pk }}"
+                                        {% for name in labels %}
+                                            {% if label.name in name %} selected {% endif %}
+                                        {% endfor %}
+                                         >{{ label.name}}</option>
+                                    {% endfor %}
+                                {% else %}
+                                    <option value="">---------</option>
+                                {% endif %}
+                            </select>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                <div class="form-check mb-3">
+                    {% if is_creator %}
+                        <input type="checkbox" name="only_own_tasks" id="only_own_tasks" class="form-check-input" checked>
+                    {% else %}
+                        <input type="checkbox" name="only_own_tasks" id="only_own_tasks" class="form-check-input">
+                    {% endif %}
+                    <label for="only_own_tasks">{% translate 'only_my_tasks' %}</label>
+                </div>
+                <input class='btn btn-primary' type="submit" value="{% translate 'show_btn' %}">
+            </form>
+        </div>
+    </div>
+    <table class="table table-striped mt-5">
+        <thead>
+            <tr>
+                <th>{% translate 'id' %}</th>
+                <th>{% translate 'status_name' %}</th>
+                <th>{% translate 'status' %}</th>
+                <th>{% translate 'author' %}</th>
+                <th>{% translate 'executor' %}</th>
+                <th>{% translate 'created_at' %}</th>
+                <th>{% translate 'actions' %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in filter.qs %}
+                <tr>
+                    <td>{{ task.id }}</td>
+                    <td>
+                        <a href="{% url 'tasks' %}{{ task.id }}">{{ task.name }}</a>
+                    </td>
+                    <td>{{ task.status.name }}</td>
+                    <td>{{ task.author.first_name }} {{task.author.last_name }}</td>
+                    <td>{{ task.executor.first_name }} {{ task.executor.last_name }}</td>
+                    <td>{{ task.created_at }}</td>
+                    <td class="d-flex">
+                        <a href="{% url 'tasks' %}{{ task.id }}/update/" class="btn btn-primary me-1">{% translate 'edit_user_btn' %}</a>
+                        <a href="{% url 'tasks' %}{{ task.id }}/delete/" class="btn btn-primary me-1">{% translate 'remove' %}</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

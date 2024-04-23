@@ -1,16 +1,24 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from .forms import TaskCreationForm
+from .forms import TaskCreationForm, TaskFilter
 from task_manager.tasks.models import Task
 from django.contrib import messages
 from django.utils.translation import gettext
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django_filters.views import FilterView
 
 
-class TasksView(LoginRequiredMixin, View):
+class TasksView(LoginRequiredMixin, FilterView):
     def get(self, request):
-        tasks = Task.objects.all()
-        return render(request, 'tasks/index.html', context={'tasks': tasks})
+        is_creator = False
+        if (request.GET.get('only_own_tasks')):
+            tasks = TaskFilter(request.GET, queryset=Task.objects.all()
+                               .filter(author_id=request.user.id))
+            is_creator = True
+        else:
+            tasks = TaskFilter(request.GET, queryset=Task.objects.all())
+        return render(request, 'tasks/task_filter.html',
+                      {'filter': tasks, 'is_creator': is_creator})
 
 
 class TaskFormCreateView(LoginRequiredMixin, View):

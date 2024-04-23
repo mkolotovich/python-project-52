@@ -21,3 +21,9 @@ class TasksCRUDTest(unittest.TestCase):
         self.assertEqual(response.status_code, 302)
         task = Task.objects.get(name="tota")
         self.assertEqual(task.status.id, 6)
+
+    def test_read_filters(self):
+        response = self.client.get('/tasks/?status=6')
+        self.assertEqual(response.status_code, 302)
+        tasks = Task.objects.all().filter(status_id=6)
+        self.assertEqual(len(tasks), 1)
