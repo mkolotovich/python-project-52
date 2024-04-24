@@ -95,7 +95,7 @@ DATABASES = {
         "NAME": "mydatabase",
         "USER": "mike",
         "PASSWORD": "1",
-        "HOST": "127.0.0.1",
+        "HOST": "localhost",
         "PORT": "5432",
     },
     'dev': {
