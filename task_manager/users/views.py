@@ -6,15 +6,11 @@ from task_manager.users.models import User
 from task_manager.tasks.models import Task
 from django.contrib import messages
 from django.utils.translation import gettext
-from django.http import HttpResponse
 
 
 class IndexView(View):
     def get(self, request):
-        # return render(request, 'welcome/index.html')
-        a = None
-        a.hello()
-        return HttpResponse("Hello, world. You're at the pollapp index.")
+        return render(request, 'welcome/index.html')
 
 
 class UsersView(View):
