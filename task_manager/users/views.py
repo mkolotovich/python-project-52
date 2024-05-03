@@ -6,6 +6,33 @@ from task_manager.users.models import User
 from task_manager.tasks.models import Task
 from django.contrib import messages
 from django.utils.translation import gettext
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import authenticate, login
+
+
+class LoginView(View):
+    def get(self, request):
+        context = {
+            'form': AuthenticationForm()
+        }
+        return render(request, 'registration/login.html', context)
+
+    def post(self, request):
+        form = AuthenticationForm(request.POST)
+        context = {
+            'form': form
+        }
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            messages.add_message(request, messages.SUCCESS,
+                                 gettext("auth_success"))
+            return redirect('root')
+        else:
+            messages.error(request, gettext("auth_form_error"))
+            return render(request, 'registration/login.html', context)
 
 
 class IndexView(View):
