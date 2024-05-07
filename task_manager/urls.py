@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', include('task_manager.users.urls')),
     path('login/', views.LoginView.as_view()),
+    path('logout/', views.LogoutView.as_view()),
     path('', include('django.contrib.auth.urls')),
     path('statuses/', include('task_manager.statuses.urls')),
     path('tasks/', include('task_manager.tasks.urls')),

@@ -8,6 +8,15 @@ from django.contrib import messages
 from django.utils.translation import gettext
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login
+from django.contrib.auth import logout
+
+
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        messages.add_message(request, messages.INFO,
+                             gettext("log_out"))
+        return redirect('root')
 
 
 class LoginView(View):
