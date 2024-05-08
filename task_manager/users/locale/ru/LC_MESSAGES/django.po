@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-07 11:46+0000\n"
+"POT-Creation-Date: 2024-05-08 06:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -146,15 +146,19 @@ msgstr ""
 "Пожалуйста, введите правильные имя пользователя и пароль. Оба поля могут "
 "быть чувствительны к регистру."
 
-#: views.py:79
+#: views.py:74
+msgid "user_create_success"
+msgstr "Пользователь успешно зарегистрирован"
+
+#: views.py:81
 msgid "auth_error"
 msgstr "Вы не авторизованы! Пожалуйста, выполните вход."
 
-#: views.py:83
+#: views.py:85
 msgid "edit_error"
 msgstr "У вас нет прав для изменения другого пользователя."
 
-#: views.py:122
+#: views.py:124
 msgid "remove_error"
 msgstr "Невозможно удалить пользователя, потому что он используется"
 

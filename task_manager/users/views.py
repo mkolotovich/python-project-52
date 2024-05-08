@@ -66,6 +66,8 @@ class UsersFormCreateView(View):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.add_message(request, messages.SUCCESS,
+                                 gettext("user_create_success"))
             return redirect('login')
         context = {
             'form': form
