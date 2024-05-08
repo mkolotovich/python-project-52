@@ -19,10 +19,8 @@ class CustomUserChangeForm(UserChangeForm):
 
 
 class CustomSetPasswordForm(SetPasswordForm):
-    new_password1 = forms.CharField(label=gettext("old_password"),
-                                    widget=forms.PasswordInput)
-    new_password2 = forms.CharField(label=gettext("new_password"),
-                                    widget=forms.PasswordInput)
+    new_password1 = forms.CharField(label=gettext("old_password"))
+    new_password2 = forms.CharField(label=gettext("new_password"))
 
     def clean(self):
         cleaned_data = super().clean()
