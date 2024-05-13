@@ -18,12 +18,12 @@
         {% for field in password_form %}
             {% if field.name == 'new_password1' %}
                 <div class="mb-3">
-                    <label for="id_password1">Пароль:</label>
+                    <label for="id_password1">{% translate 'old_password' %}</label>
                     <input name="password1" class="form-control" id="id_password1" required>
                 </div>
             {% else %}
                 <div class="mb-3">
-                    <label for="id_password2">Подтверждение пароля:</label>
+                    <label for="id_password2">{% translate 'new_password' %}</label>
                     <input name="password2" class="form-control" id="id_password2" required>
                 </div>
             {% endif %}

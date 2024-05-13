@@ -1,8 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserChangeForm, SetPasswordForm
-from django import forms
-from django.utils.translation import gettext
 User = get_user_model()
 
 
@@ -19,7 +17,4 @@ class CustomUserChangeForm(UserChangeForm):
 
 
 class CustomSetPasswordForm(SetPasswordForm):
-    new_password1 = forms.CharField(
-        label=gettext("old_password"),
-    )
-    new_password2 = forms.CharField(label=gettext("new_password"))
+    pass
