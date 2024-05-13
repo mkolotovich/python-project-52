@@ -106,6 +106,8 @@ class UsersFormEditView(View):
             user = user_form.save(commit=False)
             user.set_password(new_password1)
             user.save()
+            messages.add_message(request, messages.SUCCESS,
+                                 gettext("edit_success"))
             return redirect('users')
         if new_password1 and new_password2 and new_password1 != new_password2:
             pass_form.error_messages = {gettext('password_mismatch'): ""}
