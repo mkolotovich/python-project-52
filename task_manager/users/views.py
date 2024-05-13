@@ -136,4 +136,6 @@ class UsersFormDeleteView(View):
             return redirect('users')
         if user:
             user.delete()
+            messages.add_message(request, messages.SUCCESS,
+                                 gettext("remove_success"))
             return redirect('users')
