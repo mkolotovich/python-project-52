@@ -69,7 +69,7 @@
             {% else  %}
                 <div class="mb-3">
                     {{ field.errors }}
-                    {{ field.label_tag }} 
+                    <label class="form-label" for="id_labels">{{ field.label }}</label>
                     <select name="{{ field.name }}" class="form-select" id="id_{{ field.name }}" multiple>
                         {% if field.field.queryset.exists %}
                             {% for label in field.field.queryset %}
