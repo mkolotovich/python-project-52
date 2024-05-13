@@ -52,7 +52,7 @@
             {% elif field.name == 'executor' %}
                 <div class="mb-3">
                     {{ field.errors }}
-                    {{ field.label_tag }} 
+                    <label class="form-label" for="id_executor">{{ field.label }}</label>
                     <select name="{{ field.name }}" class="form-select" id="id_{{ field.name }}">
                         {% if field.field.queryset.exists %}
                             <option value="">---------</option>
