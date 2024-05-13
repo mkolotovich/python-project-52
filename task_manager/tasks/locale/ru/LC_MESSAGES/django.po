@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-23 08:11+0000\n"
+"POT-Creation-Date: 2024-05-13 10:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,25 +20,25 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: forms.py:11 templates/tasks/task_filter.html:98
+#: forms.py:12 templates/tasks/task_filter.html:99
 msgid "status_name"
 msgstr ""
 
-#: forms.py:12
+#: forms.py:13
 msgid "task_description"
 msgstr "Описание"
 
-#: forms.py:13 templates/tasks/task_filter.html:18
-#: templates/tasks/task_filter.html:99
+#: forms.py:14 templates/tasks/task_filter.html:18
+#: templates/tasks/task_filter.html:100
 msgid "status"
 msgstr "Статус"
 
-#: forms.py:14 templates/tasks/task_filter.html:51
-#: templates/tasks/task_filter.html:101 templates/tasks/view.html:26
+#: forms.py:15 templates/tasks/task_filter.html:51
+#: templates/tasks/task_filter.html:102 templates/tasks/view.html:26
 msgid "executor"
 msgstr "Исполнитель"
 
-#: forms.py:15
+#: forms.py:16
 msgid "labels"
 msgstr ""
 
@@ -60,7 +60,7 @@ msgstr "Создать задачу"
 msgid "edit_task"
 msgstr "Изменение задачи"
 
-#: templates/tasks/edit.html:87 templates/tasks/task_filter.html:118
+#: templates/tasks/edit.html:87 templates/tasks/task_filter.html:119
 #: templates/tasks/view.html:34
 msgid "edit_user_btn"
 msgstr ""
@@ -81,31 +81,31 @@ msgstr "Задачи"
 msgid "label"
 msgstr "Метка"
 
-#: templates/tasks/task_filter.html:88
+#: templates/tasks/task_filter.html:89
 msgid "only_my_tasks"
 msgstr "Только свои задачи"
 
-#: templates/tasks/task_filter.html:90
+#: templates/tasks/task_filter.html:91
 msgid "show_btn"
 msgstr "Показать"
 
-#: templates/tasks/task_filter.html:97
+#: templates/tasks/task_filter.html:98
 msgid "id"
 msgstr ""
 
-#: templates/tasks/task_filter.html:100 templates/tasks/view.html:22
+#: templates/tasks/task_filter.html:101 templates/tasks/view.html:22
 msgid "author"
 msgstr "Автор"
 
-#: templates/tasks/task_filter.html:102 templates/tasks/view.html:30
+#: templates/tasks/task_filter.html:103 templates/tasks/view.html:30
 msgid "created_at"
 msgstr ""
 
-#: templates/tasks/task_filter.html:103
+#: templates/tasks/task_filter.html:104
 msgid "actions"
 msgstr ""
 
-#: templates/tasks/task_filter.html:119 templates/tasks/view.html:37
+#: templates/tasks/task_filter.html:120 templates/tasks/view.html:37
 msgid "remove"
 msgstr ""
 
@@ -113,18 +113,18 @@ msgstr ""
 msgid "view_task"
 msgstr "Просмотр задачи"
 
-#: views.py:33
+#: views.py:40
 msgid "task_created"
 msgstr "Задача успешно создана"
 
-#: views.py:58
+#: views.py:65
 msgid "task_edit"
 msgstr "Задача успешно изменена"
 
-#: views.py:77
+#: views.py:84
 msgid "remove_task_error"
 msgstr "Задачу может удалить только ее автор"
 
-#: views.py:81
+#: views.py:88
 msgid "task_remove"
 msgstr "Задача успешно удалена"

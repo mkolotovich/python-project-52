@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-08 06:44+0000\n"
+"POT-Creation-Date: 2024-05-13 10:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,11 +20,11 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: forms.py:22
+#: forms.py:23
 msgid "old_password"
 msgstr "Пароль"
 
-#: forms.py:24
+#: forms.py:26
 msgid "new_password"
 msgstr "Подтверждение пароля"
 
@@ -92,7 +92,7 @@ msgstr "Да, удалить"
 msgid "edit_user"
 msgstr "Изменение пользователя"
 
-#: templates/users/edit.html:19 templates/users/index.html:26
+#: templates/users/edit.html:36 templates/users/index.html:26
 msgid "edit_user_btn"
 msgstr "Изменить"
 
@@ -132,33 +132,43 @@ msgstr "Практические курсы по программировани�
 msgid "more"
 msgstr "Узнать больше"
 
-#: views.py:18
+#: views.py:19
 msgid "log_out"
 msgstr "Вы разлогинены"
 
-#: views.py:40
+#: views.py:41
 msgid "auth_success"
 msgstr "Вы залогинены"
 
-#: views.py:43
+#: views.py:44
 msgid "auth_form_error"
 msgstr ""
 "Пожалуйста, введите правильные имя пользователя и пароль. Оба поля могут "
 "быть чувствительны к регистру."
 
-#: views.py:74
+#: views.py:71
 msgid "user_create_success"
 msgstr "Пользователь успешно зарегистрирован"
 
-#: views.py:81
+#: views.py:82
 msgid "auth_error"
 msgstr "Вы не авторизованы! Пожалуйста, выполните вход."
 
-#: views.py:85
+#: views.py:86
 msgid "edit_error"
 msgstr "У вас нет прав для изменения другого пользователя."
 
-#: views.py:124
+#: views.py:110
+msgid "password_mismatch"
+msgstr "Введенные пароли не совпадают."
+
+#: views.py:112
+msgid "short_pass"
+msgstr ""
+"Введённый пароль слишком короткий. Он должен содержать как минимум 8 "
+"символов."
+
+#: views.py:132
 msgid "remove_error"
 msgstr "Невозможно удалить пользователя, потому что он используется"
 
