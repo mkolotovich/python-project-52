@@ -53,7 +53,9 @@
                                 {% if field.field.queryset.exists %}
                                     <option value="">---------</option>
                                     {% for user in field.field.queryset %}
-                                        <option value="{{ user.pk }}">{{ user.first_name}} {{user.last_name }}</option>
+                                        <option value="{{ user.pk }}"
+                                        {% if user.pk|stringformat:"i" in executor %} selected {% endif %}
+                                        >{{ user.first_name}} {{user.last_name }}</option>
                                     {% endfor %}
                                 {% else %}
                                     <option value="">---------</option>
