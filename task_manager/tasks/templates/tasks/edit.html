@@ -15,7 +15,7 @@
                 {% bootstrap_field field %}
             {% elif field.name == 'status' %}
                 <div class="mb-3">
-                    {{ field.label_tag }} 
+                    <label class="form-label" for="id_status">{% translate 'status' %}</label>
                     {% if field.errors  %}
                         <select name="{{ field.name }}" class="form-select is-invalid" id="id_{{field.name }}">
                             {% if field.field.queryset.exists %}
