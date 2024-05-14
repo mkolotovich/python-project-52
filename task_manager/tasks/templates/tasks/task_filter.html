@@ -68,9 +68,7 @@
                                     <option value="">---------</option>
                                     {% for label in field.field.queryset %}
                                         <option value="{{ label.pk }}"
-                                        {% for name in labels %}
-                                            {% if label.name in name %} selected {% endif %}
-                                        {% endfor %}
+                                        {% if label.pk|stringformat:"i" in labels %} selected {% endif %}
                                          >{{ label.name}}</option>
                                     {% endfor %}
                                 {% else %}

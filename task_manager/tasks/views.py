@@ -11,6 +11,7 @@ from django_filters.views import FilterView
 class TasksView(LoginRequiredMixin, FilterView):
     def get(self, request):
         is_creator = False
+        labels = request.GET.getlist('labels')
         if (request.GET.get('only_own_tasks')):
             tasks = TaskFilter(request.GET, queryset=Task.objects.all()
                                .filter(author_id=request.user.id))
@@ -18,7 +19,8 @@ class TasksView(LoginRequiredMixin, FilterView):
         else:
             tasks = TaskFilter(request.GET, queryset=Task.objects.all())
         return render(request, 'tasks/task_filter.html',
-                      {'filter': tasks, 'is_creator': is_creator})
+                      {'filter': tasks, 'is_creator': is_creator,
+                       'labels': labels})
 
 
 class TaskFormCreateView(LoginRequiredMixin, View):
