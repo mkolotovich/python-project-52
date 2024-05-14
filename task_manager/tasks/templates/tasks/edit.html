@@ -48,7 +48,7 @@
             {% elif field.name == 'description' %}
                 <div class="mb-3">
                     {{ field.errors }}
-                    {{ field.label_tag }} 
+                    <label class="form-label" for="id_description">{% translate 'task_description' %}</label>
                     <textarea name="{{field.name }}" class="form-control" id="id_{{field.name }}" rows="10">{{field.initial}}</textarea>
                 </div>
             {% elif field.name == 'executor' %}
