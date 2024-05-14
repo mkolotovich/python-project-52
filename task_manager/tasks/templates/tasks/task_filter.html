@@ -36,7 +36,7 @@
                                         <option value="">---------</option>
                                         {% for status in field.field.queryset %}
                                             <option value="{{ status.pk }}" 
-                                                {% if status.name == task.status.name %} selected  {% endif %}
+                                                {% if status.pk|stringformat:"i" in status_id %} selected  {% endif %}
                                             >{{ status.name }}</option>
                                         {% endfor %}
                                     {% else %}
