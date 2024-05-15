@@ -6,3 +6,5 @@ messages:
 	python3 ../../manage.py makemessages -l ru
 compile:
 	python3 ../manage.py compilemessages
+build:
+	./build.sh
