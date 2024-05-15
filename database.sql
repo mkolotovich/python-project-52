@@ -45,3 +45,23 @@ CREATE TABLE django_session (
     session_data  text,
     expire_date   DATE
 );
+
+CREATE TABLE auth_permission (
+    id                integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    name              VARCHAR(255),
+    content_type_id   integer,
+    codename          VARCHAR(100) 
+);
+
+CREATE TABLE django_content_type (
+    id                integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    app_label         VARCHAR(100),
+    model             VARCHAR(100) 
+);
+
+CREATE TABLE django_migrations (
+    id                bigint PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    app               VARCHAR(255),
+    name              VARCHAR(255),
+    applied           DATE
+);
