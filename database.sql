@@ -39,3 +39,9 @@ CREATE TABLE users_user (
     is_active     boolean,
     date_joined   DATE
 );
+
+CREATE TABLE django_session (
+    session_key   VARCHAR(40) PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    session_data  text,
+    expire_date   DATE
+);
