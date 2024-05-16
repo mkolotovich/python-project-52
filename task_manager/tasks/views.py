@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
+
+from task_manager.mixins import EditView
 from .forms import TaskCreationForm, TaskFilter
 from task_manager.tasks.models import Task
 from django.contrib import messages
@@ -51,7 +53,15 @@ class TaskFormCreateView(LoginRequiredMixin, View):
         return render(request, 'tasks/new.html', context)
 
 
-class TaskFormEditView(LoginRequiredMixin, View):
+class TaskForm:
+    value = Task
+    template = 'tasks/edit.html'
+    form = TaskCreationForm
+    text = 'task_edit'
+    path = 'tasks'
+
+
+class TaskFormEditView(LoginRequiredMixin, View, TaskForm, EditView):
     def get(self, request, *args, **kwargs):
         task_id = kwargs.get('pk')
         task = Task.objects.get(id=task_id)
@@ -60,18 +70,7 @@ class TaskFormEditView(LoginRequiredMixin, View):
         return render(request, 'tasks/edit.html',
                       {'form': form, 'task_id': task_id, 'task': task,
                        'labels': labels})
-
-    def post(self, request, *args, **kwargs):
-        task_id = kwargs.get('pk')
-        task = Task.objects.get(id=task_id)
-        form = TaskCreationForm(request.POST, instance=task)
-        if form.is_valid():
-            form.save()
-            task_edit = gettext("task_edit")
-            messages.add_message(request, messages.SUCCESS, task_edit)
-            return redirect('tasks')
-        return render(request, 'tasks/edit.html',
-                      {'form': form, 'task_id': task_id})
+    pass
 
 
 class TaskFormDeleteView(LoginRequiredMixin, View):

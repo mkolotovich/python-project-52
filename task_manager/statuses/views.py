@@ -6,20 +6,22 @@ from task_manager.tasks.models import Task
 from django.contrib import messages
 from django.utils.translation import gettext
 from django.contrib.auth.mixins import LoginRequiredMixin
+from task_manager.mixins import DeleteView, EditView, FormView
 
 
-class StatusesView(LoginRequiredMixin, View):
-    def get(self, request):
-        statuses = Status.objects.all()
-        return render(request, 'index.html', context={'statuses': statuses})
+class StatusViewForm:
+    value = Status
+    template = 'index.html'
+
+
+class StatusesView(LoginRequiredMixin, View, StatusViewForm, FormView):
+    pass
 
 
 class StatusesFormCreateView(LoginRequiredMixin, View):
     def get(self, request):
-        context = {
-            'form': StatusCreationForm()
-        }
-        return render(request, 'new.html', context)
+        return render(request, 'new.html',
+                      context={'form': StatusCreationForm()})
 
     def post(self, request):
         form = StatusCreationForm(request.POST)
@@ -34,33 +36,31 @@ class StatusesFormCreateView(LoginRequiredMixin, View):
         return render(request, 'new.html', context)
 
 
-class StatusFormEditView(LoginRequiredMixin, View):
+class StatusEditForm:
+    value = Status
+    template = 'edit.html'
+    form = StatusCreationForm
+    text = 'status_edit'
+    path = 'statuses'
+
+
+class StatusFormEditView(LoginRequiredMixin, View, StatusEditForm, EditView):
     def get(self, request, *args, **kwargs):
         status_id = kwargs.get('pk')
         status = Status.objects.get(id=status_id)
         form = StatusCreationForm(instance=status)
         return render(request, 'edit.html',
                       {'form': form, 'status_id': status_id})
-
-    def post(self, request, *args, **kwargs):
-        status_id = kwargs.get('pk')
-        status = Status.objects.get(id=status_id)
-        form = StatusCreationForm(request.POST, instance=status)
-        if form.is_valid():
-            form.save()
-            status_edit = gettext("status_edit")
-            messages.add_message(request, messages.SUCCESS, status_edit)
-            return redirect('statuses')
-        return render(request, 'edit.html',
-                      {'form': form, 'status_id': status_id})
+    pass
 
 
-class StatusFormDeleteView(LoginRequiredMixin, View):
-    def get(self, request, *args, **kwargs):
-        status_id = kwargs.get('pk')
-        status = Status.objects.get(id=status_id)
-        return render(request, 'delete.html',
-                      {'status': status, 'status_id': status_id})
+class StatusForm:
+    value = Status
+    template = 'delete.html'
+
+
+class StatusFormDeleteView(LoginRequiredMixin, View, StatusForm, DeleteView):
+    pass
 
     def post(self, request, *args, **kwargs):
         status_id = kwargs.get('pk')

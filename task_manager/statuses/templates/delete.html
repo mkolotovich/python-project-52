@@ -5,8 +5,8 @@
 {% endblock %}
 
 {% block content %}
-    <p>{% translate 'remove_user_confirm' %} {{ status.name}}?</p>
-    <form action="{% url 'drop_status' pk=status_id %}" method="post" class="m-0">
+    <p>{% translate 'remove_user_confirm' %} {{ value.name}}?</p>
+    <form action="{% url 'drop_status' pk=value_id %}" method="post" class="m-0">
         {% csrf_token %}
         <input class='btn btn-danger' type="submit" value="{% translate 'remove_user_btn' %}">
     </form>
