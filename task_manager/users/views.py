@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from .forms import (
-    UserCreationForm, CustomUserChangeForm, CustomSetPasswordForm)
+from .forms import (UserCreationForm, CustomUserChangeForm)
 from task_manager.users.models import User
 from task_manager.tasks.models import Task
 from django.contrib import messages
@@ -88,34 +87,21 @@ class UsersFormEditView(View):
         user_id = kwargs.get('pk')
         user = User.objects.get(id=user_id)
         user_form = CustomUserChangeForm(instance=user)
-        pass_form = CustomSetPasswordForm(user)
-        pass_form.error_messages = {}
-        return render(request, 'users/edit.html',
-                      {'form': user_form, 'password_form': pass_form,
-                       'user_id': user_id})
+        return render(request, 'users/edit.html', {'form': user_form,
+                                                   'user_id': user_id})
 
     def post(self, request, *args, **kwargs):
         user_id = kwargs.get('pk')
         user = User.objects.get(id=user_id)
         user_form = CustomUserChangeForm(request.POST, instance=user)
-        pass_form = CustomSetPasswordForm(user, request.POST)
-        new_password1 = pass_form.data['password1']
-        new_password2 = pass_form.data["password2"]
-        if user_form.is_valid() and (new_password1 and new_password2
-                                     and new_password1 == new_password2):
+        if user_form.is_valid():
             user = user_form.save(commit=False)
-            user.set_password(new_password1)
             user.save()
             messages.add_message(request, messages.SUCCESS,
                                  gettext("edit_success"))
             return redirect('users')
-        if new_password1 and new_password2 and new_password1 != new_password2:
-            pass_form.error_messages = {gettext('password_mismatch'): ""}
-        if (len(new_password1) < 8 or len(new_password2) < 8):
-            pass_form.error_messages = {gettext('short_pass'): ""}
-        return render(request, 'users/edit.html',
-                      {'form': user_form, 'password_form': pass_form,
-                       'user_id': user_id})
+        return render(request, 'users/edit.html', {'form': user_form,
+                                                   'user_id': user_id})
 
 
 class UsersFormDeleteView(View):

@@ -11,28 +11,8 @@
     <form action="{% url 'patch_user' pk=user_id %}" method="post" class="m-0">
         {% csrf_token %}
         {% for field in form %}
-            {% if field.name != 'password' %}
-                {% bootstrap_field field %}
-            {% endif %}
+            {% bootstrap_field field %}
         {% endfor %}
-        {% for field in password_form %}
-            {% if field.name == 'new_password1' %}
-                <div class="mb-3">
-                    <label for="id_password1">{% translate 'old_password' %}</label>
-                    <input name="password1" class="form-control" id="id_password1" required>
-                </div>
-            {% else %}
-                <div class="mb-3">
-                    <label for="id_password2">{% translate 'new_password' %}</label>
-                    <input name="password2" class="form-control" id="id_password2" required>
-                </div>
-            {% endif %}
-        {% endfor %}
-        {% if password_form.error_messages %}
-            {% for field in password_form.error_messages %}
-                <div class="mb-3">{{field}}</div>
-            {% endfor %}
-        {% endif %}
         <input class='btn btn-primary' type="submit" value="{% translate 'edit_user_btn' %}">
     </form>
 {% endblock %}
